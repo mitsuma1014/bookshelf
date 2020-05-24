@@ -5,7 +5,7 @@
 <%= link_to "みんなの感想"%>
 <%= link_to "ログアウト"%>
 
-<div><img src="" alt="アイコン画像" srcset=""></div>
+<div><%= image_tag @user.image.url, alt: "ユーザー画像" %></div>
 <div><%= "ユーザー名：#{@user.name}" %></div>
 <div><%= "プロフィール：#{@user.profile}"%></div>
 <%= link_to "編集",[:edit, @user]%>
