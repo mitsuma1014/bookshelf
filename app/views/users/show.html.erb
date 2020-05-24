@@ -7,5 +7,5 @@
 
 <div><img src="" alt="アイコン画像" srcset=""></div>
 <div><%= "ユーザー名：#{@user.name}" %></div>
-<div><%= "プロフィール："%></div>
+<div><%= "プロフィール：#{@user.profile}"%></div>
 <%= link_to "編集",[:edit, @user]%>
