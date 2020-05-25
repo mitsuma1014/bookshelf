@@ -7,3 +7,4 @@
 <div><%= "ユーザー名：#{@user.name}" %></div>
 <div><%= "プロフィール：#{@user.profile}"%></div>
 <%= link_to "編集",[:edit, @user]%>
+<%= link_to "削除",@user, method: :delete, data:{ confirm:"ユーザー情報を削除します。よろしいですか？"} %>
