@@ -1,9 +1,7 @@
 <h1>ユーザー詳細画面</h1>
 
-<%= link_to "本棚"%>
-<%= link_to "ログインユーザー名"%>
-<%= link_to "みんなの感想"%>
-<%= link_to "ログアウト"%>
+
+<%= render "shared/header" %>
 
 <div><%= image_tag @user.image.url, alt: "ユーザー画像" %></div>
 <div><%= "ユーザー名：#{@user.name}" %></div>
