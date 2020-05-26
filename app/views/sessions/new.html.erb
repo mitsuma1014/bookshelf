@@ -1,6 +1,10 @@
 <h1>ログイン画面</h1>
 
-<%= render "/shared/header"%>
+<%= link_to "Top", :root %>
+<%= link_to "新規登録", :new_user %>
+<%= link_to "ログイン" ,login_path %>
+
+
 
 <%= form_with scope: :session, local: true do |f| %>
   <div>
