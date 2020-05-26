@@ -1,0 +1,16 @@
+<h1>ログイン画面</h1>
+
+<%= render "/shared/header"%>
+
+<%= form_with scope: :session, local: true do |f| %>
+  <div>
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.text_field :email%>
+  </div>
+  <div>
+    <%= f.label :password, "パスワード"%>
+    <%= f.password_field :password %>
+  </div>
+  <%= f.submit "ログインする"%>
+<% end %>
+

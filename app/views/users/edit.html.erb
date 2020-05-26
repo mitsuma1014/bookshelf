@@ -11,21 +11,21 @@
 <% end %>
 
 <%= form_with model: @user, local: true do |f|%>
-<div>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-<div>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-</div>
-<div>
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-</div>
-<div>
-  <%= f.label :profile %>
-  <%= f.text_area :profile, cols:40, rows: 3 %>
-</div>
-<%= f.submit %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+  <div>
+    <%= f.label :profile %>
+    <%= f.text_area :profile, cols:40, rows: 3 %>
+  </div>
+  <%= f.submit %>
 <% end %>
