@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
+  before_action :set_user, only: [:show, :edit, :update]
+
   def show
-   
   end
 
   def new
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       #本来は読書記録一覧へリダイレクトさせるが、暫定的にユーザー詳細画面へリダイレクト
       redirect_to @user, notice: "ユーザー「#{@user.name}」を登録しました。" 
     else
