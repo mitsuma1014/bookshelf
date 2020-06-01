@@ -1,11 +1,11 @@
 <% if current_user %>
-  <%= link_to "本棚"%>
-  <%= link_to "ログインユーザー名"%>
-  <%= link_to "みんなの感想"%>
+  <%= link_to_unless_current "本棚"%>
+  <%= link_to_unless_current current_user.name,@user %>
+  <%= link_to_unless_current "みんなの感想"%>
   <%= link_to "ログアウト", logout_path, method: :delete%>
 <% else %>
-  <%= link_to "Top", :root %>
-  <%= link_to "新規登録", :new_user %>
-  <%= link_to "ログイン" ,login_path %>
+  <%= link_to_unless_current "Top", :root %>
+  <%= link_to_unless_current "新規登録", :new_user %>
+  <%= link_to_unless_current "ログイン" ,login_path %>
 <% end %>
 

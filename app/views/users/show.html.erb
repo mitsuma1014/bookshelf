@@ -1,10 +1,12 @@
 <h1>ユーザー詳細画面</h1>
 
-
 <%= render "shared/header" %>
 
 <div><%= image_tag @user.image.url, alt: "ユーザー画像" %></div>
 <div><%= "ユーザー名：#{@user.name}" %></div>
 <div><%= "プロフィール：#{@user.profile}"%></div>
-<%= link_to "編集",[:edit, @user]%>
-<%= link_to "削除",@user, method: :delete, data:{ confirm:"ユーザー情報を削除します。よろしいですか？"} %>
+
+<% if @user.id == @current_user.id %>
+  <%= link_to "編集",[:edit, @user]%>
+  <%= link_to "削除",@user, method: :delete, data:{ confirm:"ユーザー情報を削除します。よろしいですか？"} %>
+<% end %>

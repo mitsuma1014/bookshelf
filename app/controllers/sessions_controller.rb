@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       #本来は読書記録一覧へリダイレクトさせるが、暫定的にユーザー詳細画面へリダイレクト
       redirect_to @user,notice: "ユーザー「#{@user.name}」がログインしました。"
     else
-      flash.now.alert = "名前とパスワードが一致しません"
+      flash.now.alert = "メールアドレスとパスワードが一致しません"
       render :new
     end
   end
