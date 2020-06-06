@@ -1,0 +1,33 @@
+<h1>読書記録作成画面</h1>
+
+<%= render "shared/header" %>
+
+<%= render "shared/errors", obj: @book %>
+
+<%= form_with model: @book, local: true do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <%= f.fields_for :book_authors do |a| %>
+    <div>
+      <%= a.label :author, "著者" %>
+      <%= a.text_field :author%>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :finished_at %>
+    <%= f.date_select :finished_at, start_year: 1990, end_year: Time.current.year,use_month_numbers: true %>
+  </div>
+  <div>
+    <%= f.label :genre %>
+    <%= f.text_field :genre %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description, cols: 40, rows: 10 %>
+  </div>
+  <%= f.submit %>
+<% end %>

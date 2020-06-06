@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
@@ -33,8 +33,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
+    @user.destroy
     redirect_to :root, notice: "ユーザー情報を削除しました。"
   end
 
