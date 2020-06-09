@@ -10,11 +10,11 @@
     <%= f.text_field :title %>
   </div>
 
-  <%= fields_for @book_author do |a| %>
-  <div>
-    <%= a.label :author%>
-    <%= a.text_field :author %>
-  </div>
+  <%= f.fields_for :book_authors do |a| %>
+    <div>
+      <%= a.label :author%>
+      <%= a.text_field :author %>
+    </div>
   <% end %>
 
   <div>

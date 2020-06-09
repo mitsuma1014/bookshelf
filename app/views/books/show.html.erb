@@ -11,7 +11,7 @@
     <th><%= BookAuthor.human_attribute_name(:author)%></th>
     <td>
       <% @book.book_authors.each do |a| %>
-        <%= "著者:#{a.author}" %>
+        <%= a.author %>
       <% end %>
     </td>
   </tr>
