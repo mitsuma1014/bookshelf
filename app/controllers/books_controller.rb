@@ -1,7 +1,8 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   def index
-    @books = current_user.books.order(finished_at: :desc)
+    @q = current_user.books.ransack(params[:q])
+    @books = @q.result(distinct: true)
   end
 
   def show

@@ -12,5 +12,8 @@ class Book < ApplicationRecord
 
   validates :title, presence:true
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title genre finished_at]
+  end
 end
 
