@@ -29,5 +29,7 @@
   </tr>
 </table>
 
-<%= link_to "編集", [:edit, @book]%>
+<% if @book.user_id == current_user.id %>
+  <%= link_to "編集", [:edit, @book]%>
+<% end %>
 
