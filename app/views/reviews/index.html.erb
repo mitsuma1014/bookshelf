@@ -23,6 +23,7 @@
       <th colspan = "2">タイトル</th>
       <th rowspan = "2">感想</th>
       <th rowspan = "2">投稿日</th>
+      <th rowspan = "2"></th>
     </tr>
     <tr>
       <th>著者</th>
@@ -36,6 +37,9 @@
       <td colspan = "2"><%= review.title %></td>
       <td rowspan = "2"><%= review.content %></td>
       <td rowspan = "2"><%= review.created_at %></td>
+      <% if review.user_id == current_user.id %>
+        <td><%= link_to "編集", [:edit, review] %></td>
+      <% end %>
     </tr>
     <tr>
       <td>
@@ -44,6 +48,9 @@
       <% end %>
       </td>
       <td><%= review.genre %></td>
+      <% if review.user_id == current_user.id %>
+        <td><%= link_to "削除", review, method: :delete, data: {confirm: "この投稿を削除します。よろしいですか？" }%></td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
