@@ -30,6 +30,16 @@ ja:
       book_author:
         id: ID
         author: 著者
+      review:
+        id: ID
+        title: タイトル
+        genre: ジャンル
+        content: 感想
+        user_id: ユーザーID
+      review_author:
+        id: ID
+        author: 著者
+
 
       
 

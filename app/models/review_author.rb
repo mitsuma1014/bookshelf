@@ -1,0 +1,2 @@
+class ReviewAuthor < ApplicationRecord
+end
