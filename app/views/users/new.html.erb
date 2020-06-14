@@ -2,13 +2,7 @@
 
 <%= render "shared/header" %>
 
-<% if @user.errors.present? %>
-  <ul>
-    <% @user.errors.full_messages.each do |message|%>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= render "shared/errors", obj: @user %>
 
 <%= form_with model: @user, local: true do |f|%>
   <div>

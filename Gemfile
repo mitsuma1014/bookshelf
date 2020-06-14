@@ -64,3 +64,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "carrierwave" #画像アップロード機能作成のため追加
 gem "mini_magick" #画像のリサイズのため追加
+
+gem "ransack"

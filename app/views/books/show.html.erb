@@ -1,0 +1,35 @@
+<h1>読書記録詳細画面</h1>
+
+<%= render "shared/header" %>
+
+<table>
+  <tr>
+    <th><%= Book.human_attribute_name(:title)%></th>
+    <td><%= @book.title %></td>
+  </tr>
+  <tr>
+    <th><%= BookAuthor.human_attribute_name(:author)%></th>
+    <td>
+      <% @book.book_authors.each do |a| %>
+        <%= a.author %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <th><%= Book.human_attribute_name(:genre)%></th>
+    <td><%= @book.genre %></td>
+  </tr>
+  <tr>
+    <th><%= Book.human_attribute_name(:finished_at)%></th>
+    <td><%= @book.finished_at %></td>
+  </tr>
+  <tr>
+    <th><%= Book.human_attribute_name(:description)%></th>
+    <td><%= @book.description %></td>
+  </tr>
+</table>
+
+<% if @book.user_id == current_user.id %>
+  <%= link_to "編集", [:edit, @book]%>
+<% end %>
+

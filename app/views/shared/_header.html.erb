@@ -1,6 +1,6 @@
 <% if current_user %>
-  <%= link_to_unless_current "本棚"%>
-  <%= link_to_unless_current current_user.name,@user %>
+  <%= link_to_unless_current "本棚", :books%>
+  <%= link_to_unless_current current_user.name, current_user %>
   <%= link_to_unless_current "みんなの感想"%>
   <%= link_to "ログアウト", logout_path, method: :delete%>
 <% else %>

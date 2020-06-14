@@ -20,6 +20,20 @@ ja:
         updated_at: 更新日時
         image: ユーザー画像
         profile: プロフィール
+      book:
+        id: ID
+        title: タイトル
+        genre: ジャンル
+        finished_at: 読了日
+        description: 読書メモ
+        user_id: ユーザーID
+      book_author:
+        id: ID
+        author: 著者
+
+      
+
+      
 
 
   date:
