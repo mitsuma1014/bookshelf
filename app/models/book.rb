@@ -15,5 +15,8 @@ class Book < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     %w[title genre finished_at]
   end
+
+  AUTHORS_FORM = 3
+
 end
 

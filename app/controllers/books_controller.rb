@@ -2,8 +2,6 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
   before_action :ensure_correct_user, only:[:edit,:update,:destroy]
 
-  AUTHORS_FORM = 3
-
   def index
     @q = current_user.books.ransack(params[:q])
     @books = @q.result(distinct: true)
@@ -14,7 +12,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-    AUTHORS_FORM.times{ @book.book_authors.build }
+    Book::AUTHORS_FORM.times{ @book.book_authors.build }
   end
 
   def create
@@ -28,9 +26,9 @@ class BooksController < ApplicationController
   
   def edit
     if @book.book_authors.count == 0
-      AUTHORS_FORM.times{ @book.book_authors.build }  
+      Book::AUTHORS_FORM.times{ @book.book_authors.build }  
     elsif @book.book_authors.count == 1 
-      (AUTHORS_FORM - 1).times{ @book.book_authors.build }
+      (Book::AUTHORS_FORM - 1).times{ @book.book_authors.build }
     elsif @book.book_authors.count == 2
        @book.book_authors.build
     end
