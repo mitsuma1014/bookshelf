@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   def index
+    @q = Review.all.ransack(params[:q])
+    @reviews = @q.result(distinct: true) 
   end
 
   def show

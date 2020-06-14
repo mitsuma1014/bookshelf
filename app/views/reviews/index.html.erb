@@ -1,3 +1,53 @@
 <h1>みんなの投稿</h1>
 
+<%= render "shared/header" %>
+
 <div><%= link_to "感想を投稿する", :new_review %></div>
+
+<div>
+  <%= search_form_for @q do |f| %>
+    <%= f.label :title_cont,"タイトル" %>
+    <%= f.search_field :title_cont %>
+    <%= f.label :author_cont, "著者" %>
+    <%= f.search_field :review_authors_author_cont %>
+    <%= f.label :genre_cont,"ジャンル" %>
+    <%= f.search_field :genre_cont %>
+    <%= f.submit %>
+  <% end %>
+</div>
+
+<table border = "1">
+  <thead>
+    <tr>
+      <th rowspan = "2">ユーザー名</th>
+      <th colspan = "2">タイトル</th>
+      <th rowspan = "2">感想</th>
+      <th rowspan = "2">投稿日</th>
+    </tr>
+    <tr>
+      <th>著者</th>
+      <th>ジャンル</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review|%>
+    <tr>
+      <td rowspan = "2"><%= link_to review.user.name, review.user %></td>
+      <td colspan = "2"><%= review.title %></td>
+      <td rowspan = "2"><%= review.content %></td>
+      <td rowspan = "2"><%= review.created_at %></td>
+    </tr>
+    <tr>
+      <td>
+      <% review.review_authors.each do |a| %>
+        <%= a.author %>
+      <% end %>
+      </td>
+      <td><%= review.genre %></td>
+    </tr>
+    <% end %>
+  
+  </tbody>
+
+
+</table>
