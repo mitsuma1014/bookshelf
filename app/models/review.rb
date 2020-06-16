@@ -11,6 +11,11 @@ class Review < ApplicationRecord
   end
 
   validates :title, :content, presence:true
+  validates :content, length: {maximum: 100}
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[title author genre]
+  end
 
   AUTHORS_FORM = 3 
 end

@@ -9,6 +9,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: ユーザー
+      review: 投稿
     attributes:
       user:
         id: ID

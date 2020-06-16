@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
-    @reviews = @user.reviews
+    @reviews = @user.reviews.page(params[:page]).per(10)
   end
 
   def new

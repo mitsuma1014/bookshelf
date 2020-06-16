@@ -1,10 +1,10 @@
 class ReviewsController < ApplicationController
+  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
   def index
     @q = Review.all.ransack(params[:q])
-    @reviews = @q.result(distinct: true) 
-  end
-
-  def show
+    @reviews = @q.result(distinct: true).order(created_at: :desc).page(params[:page]) .per(10)
   end
 
   def new
@@ -23,7 +23,6 @@ class ReviewsController < ApplicationController
 
 
   def edit
-    @review = current_user.reviews.find(params[:id])
     if @review.review_authors.count == 0
       Review::AUTHORS_FORM.times{ @review.review_authors.build }
     elsif @review.review_authors.count == 1
@@ -34,7 +33,6 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review = current_user.reviews.find(params[:id])
     if @review.update(review_params)
       redirect_to :reviews, notice: "投稿を更新しました。"
     else
@@ -42,9 +40,26 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @review.destroy
+    redirect_to :reviews, notice: "投稿を削除しました。"
+  end
+
   private
 
   def review_params
     params.require(:review).permit(:title, :genre, :content,review_authors_attributes: [:id, :author])
+  end
+
+  def set_review
+    @review = current_user.reviews.find(params[:id])
+  end
+
+  def ensure_correct_user
+    @review = Review.find_by(id: params[:id])
+    if @review.user_id != current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to root_path
+    end
   end
 end
