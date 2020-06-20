@@ -18,5 +18,9 @@ class Book < ApplicationRecord
 
   AUTHORS_FORM = 3
 
+  def owned_by?(user)
+    user_id == user.id
+  end
+
 end
 

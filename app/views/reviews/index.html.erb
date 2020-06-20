@@ -37,7 +37,7 @@
       <td colspan = "2"><%= review.title %></td>
       <td rowspan = "2"><%= review.content %></td>
       <td rowspan = "2"><%= review.created_at %></td>
-      <% if review.user_id == current_user.id %>
+      <% if review.owned_by?(current_user) %>
         <td><%= link_to "編集", [:edit, review] %></td>
       <% end %>
     </tr>
@@ -48,7 +48,7 @@
       <% end %>
       </td>
       <td><%= review.genre %></td>
-      <% if review.user_id == current_user.id %>
+      <% if review.owned_by?(current_user) %>
         <td><%= link_to "削除", review, method: :delete, data: {confirm: "この投稿を削除します。よろしいですか？" }%></td>
       <% end %>
     </tr>

@@ -23,11 +23,11 @@ class ReviewsController < ApplicationController
 
 
   def edit
-    if @review.review_authors.count == 0
+    if @review.review_authors.count == (Review::AUTHORS_FORM - 3)
       Review::AUTHORS_FORM.times{ @review.review_authors.build }
-    elsif @review.review_authors.count == 1
+    elsif @review.review_authors.count == (Review::AUTHORS_FORM - 2)
       (Review::AUTHORS_FORM - 1).times{@review.review_authors.build }
-      elsif @review.review_authors.count == 2
+    elsif @review.review_authors.count == (Review::AUTHORS_FORM - 1)
         @review.review_authors.build
     end
   end
@@ -57,7 +57,7 @@ class ReviewsController < ApplicationController
 
   def ensure_correct_user
     @review = Review.find_by(id: params[:id])
-    if @review.user_id != current_user.id
+    if !@review.owned_by?(current_user)
       flash[:notice] = "権限がありません"
       redirect_to root_path
     end
