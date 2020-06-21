@@ -1,0 +1,31 @@
+<h1>投稿編集画面</h1>
+
+<%= render "shared/header" %>
+
+<%= render "shared/errors", obj: @review %>
+
+<%= form_with model: @review, local: true do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <%= f.fields_for :review_authors do |a| %>
+    <div>
+      <%= a.label :author %>
+      <%= a.text_field :author %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :genre %>
+    <%= f.text_field :genre%>
+  </div>
+  <div>
+    <%= f.label :content %>
+    <%= f.text_area :content, cols: 40, rows: 10 %>
+  </div>
+  <%= f.submit %>
+<% end %>
+
+

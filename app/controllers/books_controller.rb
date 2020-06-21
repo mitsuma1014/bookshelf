@@ -59,7 +59,7 @@ class BooksController < ApplicationController
 
   def ensure_correct_user
     @book = Book.find_by(id: params[:id])
-    if @book.user_id != current_user.id
+    if !@book.owned_by?(current_user)
       flash[:notice] = "権限がありません"
       redirect_to root_path
     end

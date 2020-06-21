@@ -41,7 +41,7 @@
       </td>
       <td><%= book.genre %></td>
       <td><%= book.finished_at %></td>
-      <% if book.user_id == current_user.id %>
+      <% if book.owned_by?(current_user) %>
         <td><%= link_to "編集", [:edit, book]%>
             <%= link_to "削除", book, method: :delete, data:{ confirm:"この記録を削除します。よろしいですか？"} %>
         </td>
