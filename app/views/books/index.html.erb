@@ -11,7 +11,7 @@
       <%= f.label :author_cont, "著者" %>
       <%= f.search_field :book_authors_author_cont,class:"form-control-sm"  %>   
       <%= f.label :genre_cont,"ジャンル" %> 
-      <%= f.search_field :genre_cont,class:"form-control-sm" %> 
+      <%= f.search_field :genre_cont,class:"form-control-sm" %> <br>
       <%= f.label :finished_at_gteq,"読了日" %> 
       <%= f.date_select :finished_at_gt,{include_blank: true,use_month_numbers: true},class:"form-control-sm"  %> ~
 
