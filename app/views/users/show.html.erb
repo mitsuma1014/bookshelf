@@ -37,9 +37,7 @@
       </tr>
       <tr>
         <td colspan="1">
-        <% review.review_authors.each do |a| %>
-          <%= a.author %>
-        <% end %>
+        <%= review.review_authors.pluck(:author).join(",") %>
         </td>
         <td colspan="1"><%= review.genre %></td>
       </tr>
