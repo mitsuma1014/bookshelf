@@ -4,7 +4,7 @@ class BooksController < ApplicationController
 
   def index
     @q = current_user.books.ransack(params[:q])
-    @books = @q.result(distinct: true)
+    @books = @q.result(distinct: true).order(finished_at: :desc).page(params[:page]).per(10)
   end
 
   def show

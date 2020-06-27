@@ -13,10 +13,10 @@
       <%= f.label :genre_cont,"ジャンル" %> 
       <%= f.search_field :genre_cont,class:"form-control-sm" %> <br>
       <%= f.label :finished_at_gteq,"読了日" %> 
-      <%= f.date_select :finished_at_gt,{include_blank: true,use_month_numbers: true},class:"form-control-sm"  %> ~
+      <%= f.date_select :finished_at_gteq,{include_blank: true,use_month_numbers: true},class:"form-control-sm"  %> ~
 
     
-        <%=f.date_select :finished_at_lt,{include_blank: true,use_month_numbers: true},class:"form-control-sm"%>
+        <%=f.date_select :finished_at_lteq,{include_blank: true,use_month_numbers: true},class:"form-control-sm"%>
       <%= f.submit %>
     <% end %>
   </div>
@@ -49,4 +49,8 @@
       <% end %>
     </tbody>
   </table>
+  <div class="mb-3">
+    <%= paginate @books %>
+    <%= page_entries_info @books %>
+  </div>
 </div>
