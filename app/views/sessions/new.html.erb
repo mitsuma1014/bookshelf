@@ -1,22 +1,26 @@
-<h1>ログイン画面</h1>
-
-<%= render "shared/header" %>
-
-<% if flash.alert.present? %>
+<div class="container">
   <div>
-    <%= flash.alert %>
-  </div>
-<% end %>
+    <h2>ログイン</h2>
 
-<%= form_with scope: :session, local: true do |f| %>
-  <div>
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.text_field :email%>
+    <div class="alert-warning">
+      <% if flash.alert.present? %>
+        <div>
+          <%= flash.alert %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= form_with scope: :session, local: true do |f| %>
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.text_field :email,class:"form-control middle"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, "パスワード"%>
+        <%= f.password_field :password,class:"form-control middle" %>
+      </div>
+      <%= f.submit "ログインする"%>
+    <% end %>
   </div>
-  <div>
-    <%= f.label :password, "パスワード"%>
-    <%= f.password_field :password %>
-  </div>
-  <%= f.submit "ログインする"%>
-<% end %>
+</div>
 

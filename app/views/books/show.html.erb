@@ -1,35 +1,38 @@
-<h1>読書記録詳細画面</h1>
+<div class="container">
+  <h1>読書記録</h1>
+  <table class="table", style="table-layout:fixed;width:100%;">
+    <colgroup>
+      <col style="width:15%">
+      <col style="width:85%">
+    </colgroup>
+    <tr>
+      <th><%= Book.human_attribute_name(:title)%></th>
+      <td><%= @book.title %></td>
+    </tr>
+    <tr>
+      <th><%= BookAuthor.human_attribute_name(:author)%></th>
+      <td>
+        <% @book.book_authors.each do |a| %>
+          <%= a.author %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= Book.human_attribute_name(:genre)%></th>
+      <td><%= @book.genre %></td>
+    </tr>
+    <tr>
+      <th><%= Book.human_attribute_name(:finished_at)%></th>
+      <td><%= @book.finished_at %></td>
+    </tr>
+    <tr>
+      <th><%= Book.human_attribute_name(:description)%></th>
+      <td style="word-wrap:break-word;"><%= @book.description %></td>
+    </tr>
+  </table>
 
-<%= render "shared/header" %>
-
-<table>
-  <tr>
-    <th><%= Book.human_attribute_name(:title)%></th>
-    <td><%= @book.title %></td>
-  </tr>
-  <tr>
-    <th><%= BookAuthor.human_attribute_name(:author)%></th>
-    <td>
-      <% @book.book_authors.each do |a| %>
-        <%= a.author %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <th><%= Book.human_attribute_name(:genre)%></th>
-    <td><%= @book.genre %></td>
-  </tr>
-  <tr>
-    <th><%= Book.human_attribute_name(:finished_at)%></th>
-    <td><%= @book.finished_at %></td>
-  </tr>
-  <tr>
-    <th><%= Book.human_attribute_name(:description)%></th>
-    <td><%= @book.description %></td>
-  </tr>
-</table>
-
-<% if @book.user_id == current_user.id %>
-  <%= link_to "編集", [:edit, @book]%>
-<% end %>
+  <% if @book.user_id == current_user.id %>
+    <%= link_to "編集", [:edit, @book]%>
+  <% end %>
+</div>
 

@@ -67,3 +67,5 @@ gem "mini_magick" #画像のリサイズのため追加
 gem "ransack"
 
 gem "kaminari"
+
+gem "bootstrap"
