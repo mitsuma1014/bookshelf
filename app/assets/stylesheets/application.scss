@@ -17,11 +17,11 @@
  @import "bootstrap";
 
  @font-face{
-   font-family: "azuki";
-   src: asset_url("/assets/azuki.ttf") format("truetype");
+   font-family: "RoundedMplus1c-Regular";
+   src: asset_url("/assets/RoundedMplus1c-Regular.ttf") format("truetype");
  }
  body{
-  font-family: "azuki";
+  font-family: "RoundedMplus1c-Regular";
   background-image:url("/bookshelf.jpg");
   background-color: rgba(255,255,255,0.9);
   background-blend-mode: lighten;

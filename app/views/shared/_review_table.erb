@@ -1,22 +1,22 @@
 <tr class="review_table">
-          <tr>
-            <td><%= link_to review.user.name, review.user %></td>
-            <td><%= review.title %></td>
-            <td rowspan = "3"><%= review.created_at %>
-                              <% if review.owned_by?(current_user) %>
-                                <%= link_to "編集", [:edit, review] %>
-                                <%= link_to "削除", review, method: :delete, data: {confirm: "この投稿を削除します。よろしいですか？" }%>
-                              <% end %>
-                              <br>
-                              <%= review.content %></td>
-          </tr>
-          <tr>
-            <td rowspan="2"><%= image_tag review.user.image.url, alt:"ユーザー画像", :size => "100x100"%></td>
-            <td>
-              <%= review.review_authors.pluck(:author).join(",") %>
-            </td>
-          </tr>
-          <tr>
-            <td><%= review.genre %></td>
-          </tr>
-        </tr>
+  <tr>
+    <td><%= link_to review.user.name, review.user %></td>
+    <td><%= review.title %></td>
+    <td rowspan = "3"><%= review.created_at %>
+                      <% if review.owned_by?(current_user) %>
+                        <%= link_to "編集", [:edit, review] %>
+                        <%= link_to "削除", review, method: :delete, data: {confirm: "この投稿を削除します。よろしいですか？" }%>
+                      <% end %>
+                      <br>
+                      <%= review.content %></td>
+  </tr>
+  <tr>
+    <td rowspan="2"><%= image_tag review.user.image.url, alt:"ユーザー画像", :size => "100x100"%></td>
+    <td>
+      <%= review.review_authors.pluck(:author).join(",") %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= review.genre %></td>
+  </tr>
+  </tr>
