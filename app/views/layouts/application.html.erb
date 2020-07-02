@@ -10,11 +10,14 @@
   </head>
 
   <body>
-    <div>
-      <% if flash.notice.present? %>
-        <%= flash.notice %>
-      <% end %>
-    </div>
+  <%= render "shared/header" %>
+    
+      <div>
+        <% if flash.notice.present? %>
+          <%= flash.notice %>
+        <% end %>
+      </div>
     <%= yield %>
+   
   </body>
 </html>

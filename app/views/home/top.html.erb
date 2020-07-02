@@ -1,3 +1,44 @@
-<h1>Home画面</h1>
-<%= render "shared/header" %>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+        <h1>Bookshelf</h1>
+        <p>読み終えた本の記録を残したり、感想を他のユーザーと共有したり、<br>あなたの読書体験を形にするためのアプリ。</p>
+  </div>
+</div>
+<div class="container">
+  <h4>自分だけの読書記録を残そう</h4><br>
+  <div class="row">
+    <div class="col">
+      <%= image_tag "/book_new.png",class:"img-fluid",border:"1" %>
+      <p>「本棚に追加」から、読書記録を作成</p>
+    </div>
+    <div class="col">
+      <%= image_tag "/book_index.png",class:"img-fluid",border:"1"%>
+      <p>読んだ本は「本棚」で一覧表示</p><br>
+    </div>
+    <div class="col">
+      <%= image_tag "/book_show.png",class:"img-fluid",border:"1" %>
+      <p>詳細画面で詳しい内容を確認</p>
+    </div>
+  </div>
+  <h4>感想を共有しよう</h4><br>
+  <div class="row">
+    <div class="col">
+      <%= image_tag "/review_new.png",class:"img-fluid",border:"1" %>
+      <p>本の感想を投稿しよう</p>
+    </div>
+    <div class="col">
+      <%= image_tag "/review_index.png",class:"img-fluid",border:"1"%>
+      <p>他のユーザーが読んだ本の感想をチェック</p><br>
+    </div>
+    <div class="col">
+      <%= image_tag "/user_show.png",class:"img-fluid",border:"1" %>
+      <p>気になるユーザーの感想を一覧表示</p><br>
+    </div>
+  </div>
+  <div class="start">
+    <%= link_to "はじめる", :new_user,class:"btn btn-warning  btn-outline-secondary"%>
+  </div>
+
+</div>
+
 

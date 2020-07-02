@@ -1,34 +1,35 @@
-<h1>読書記録編集画面</h1>
+<div class="container">
+  <h1>読書記録を編集する</h1>
 
-<%= render "shared/header" %>
 
-<%= render "shared/errors", obj: @book %>
+  <%= render "shared/errors", obj: @book %>
 
-<%= form_with model: @book, local: true do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-
-  <%= f.fields_for :book_authors do |a| %>
-    <div>
-      <%= a.label :author%>
-      <%= a.text_field :author %>
+  <%= form_with model: @book, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class:"form-control title-field"%>
     </div>
-  <% end %>
 
-  <div>
-    <%= f.label :finished_at %>
-    <%= f.date_select :finished_at, start_year: 1990, end_year: Time.current.year,use_month_numbers: true %>
-  </div>
-  <div>
-    <%= f.label :genre %>
-    <%= f.text_field :genre %>
-  </div>
-  <div>
-    <%= f.label :description%>
-    <%= f.text_area :description, cols: 40, rows: 10 %>
-  </div>
-  <%= f.submit %>
-<% end %>
+    <%= f.fields_for :book_authors do |a| %>
+      <div class="form-group">
+        <%= a.label :author%>
+        <%= a.text_field :author, class:"form-control authors-field" %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :finished_at,class:"date-label" %>
+      <%= f.date_select :finished_at, { start_year: 1990, end_year: Time.current.year,use_month_numbers: true }, { class:"form-control date-field" } %>
+    </div>
+    <div class="form-group">
+      <%= f.label :genre %>
+      <%= f.text_field :genre, class:"form-control genre-field" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :description%>
+      <%= f.text_area :description, cols: 40, rows: 10,class:"form-control content-field" %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
 

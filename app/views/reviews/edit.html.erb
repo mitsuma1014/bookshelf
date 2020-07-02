@@ -1,31 +1,31 @@
-<h1>投稿編集画面</h1>
+<div class="container">
+  <h1>投稿を編集する</h1>
 
-<%= render "shared/header" %>
+  <%= render "shared/errors", obj: @review %>
 
-<%= render "shared/errors", obj: @review %>
-
-<%= form_with model: @review, local: true do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-
-  <%= f.fields_for :review_authors do |a| %>
-    <div>
-      <%= a.label :author %>
-      <%= a.text_field :author %>
+  <%= form_with model: @review, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title,class:"form-control title-field" %>
     </div>
-  <% end %>
 
-  <div>
-    <%= f.label :genre %>
-    <%= f.text_field :genre%>
-  </div>
-  <div>
-    <%= f.label :content %>
-    <%= f.text_area :content, cols: 40, rows: 10 %>
-  </div>
-  <%= f.submit %>
-<% end %>
+    <%= f.fields_for :review_authors do |a| %>
+      <div class="form-group">
+        <%= a.label :author %>
+        <%= a.text_field :author,class:"form-control authors-field" %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :genre %>
+      <%= f.text_field :genre,class:"form-control genre-field"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :content %>
+      <%= f.text_area :content, cols: 40, rows: 10,class:"form-control content-field" %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
 
 

@@ -21,7 +21,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-
   def edit
     if @review.review_authors.count == (Review::AUTHORS_FORM - 3)
       Review::AUTHORS_FORM.times{ @review.review_authors.build }
