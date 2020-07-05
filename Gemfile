@@ -70,3 +70,4 @@ gem "ransack"
 gem "kaminari"
 
 gem "bootstrap"
+
