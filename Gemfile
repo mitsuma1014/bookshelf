@@ -71,3 +71,6 @@ gem "kaminari"
 
 gem "bootstrap"
 
+gem "omniauth"
+
+gem "omniauth-facebook"

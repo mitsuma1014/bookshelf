@@ -12,13 +12,26 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      #本来は読書記録一覧へリダイレクトさせるが、暫定的にユーザー詳細画面へリダイレクト
-      redirect_to @user, notice: "ユーザー「#{@user.name}」を登録しました。" 
+    if request.env['omniauth.auth'].present?
+      #facebookログイン
+      @user = User.from_omniauth(request.env["omniauth.auth"])
+      result = @user.save(context: :facebook_login)
+      fb = "Facebook"
     else
-      render :new
+      #通常ログイン
+      @user = User.new(user_params)
+      result = @user.save
+      fb = ""
+    end
+    if result
+      session[:user_id] = @user.id
+      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
+    else
+      if fb.present?
+        redirect_to auth_failure_path
+      else
+        render :new
+      end
     end
   end
 
@@ -36,6 +49,9 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to :root, notice: "ユーザー情報を削除しました。"
+  end
+  
+  def auth_failure
   end
 
   private
