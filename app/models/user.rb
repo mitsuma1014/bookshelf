@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, unless: -> { validation_context == :facebook_login }
+  validates :password, presence: true, on: :create, unless: -> { validation_context == :facebook_login }
 
   
   has_many :books, dependent: :destroy
@@ -14,9 +14,8 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     #emailの提供は必須とする
     user = User.where("email = ?", auth.info.email).first
-    if user.blank?
-      user = User.new
-    end
+    user = User.new if user.blank?
+  
     user.uid = auth.id
     user.name = auth.info.name
     user.email = auth.info.email
