@@ -12,26 +12,28 @@ class UsersController < ApplicationController
   end
 
   def create
-    if request.env['omniauth.auth'].present?
-      #facebookログイン
-      @user = User.from_omniauth(request.env["omniauth.auth"])
-      result = @user.save(context: :facebook_login)
-      fb = "Facebook"
-    else
-      #通常ログイン
-      @user = User.new(user_params)
-      result = @user.save
-      fb = ""
+    return facebook_login if request.env['omniauth.auth'].present? #facebookログイン
+    normal_login   #通常ログイン
+  end
+
+  def facebook_login
+    @user = User.from_omniauth(request.env["omniauth.auth"])
+    if @user.save(context: :facebook_login)
+      session[:user_id] = @user.id
+      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
+    else 
+      flash.now[:notice] = "facebookでのログインに失敗しました。"
+      render :new
     end
-    if result
+  end
+
+  def normal_login
+    @user = User.new(user_params)
+    if @user.save
       session[:user_id] = @user.id
       redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
     else
-      if fb.present?
-        redirect_to auth_failure_path
-      else
-        render :new
-      end
+      render :new
     end
   end
 
@@ -50,6 +52,7 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to :root, notice: "ユーザー情報を削除しました。"
   end
+
   
   def auth_failure
   end
