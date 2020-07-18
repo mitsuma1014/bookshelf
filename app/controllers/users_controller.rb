@@ -12,29 +12,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    return facebook_login if request.env['omniauth.auth'].present? #facebookログイン
+    return sns_login if request.env['omniauth.auth'].present? #snsログイン
     normal_login   #通常ログイン
-  end
-
-  def facebook_login
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-    if @user.save(context: :facebook_login)
-      session[:user_id] = @user.id
-      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
-    else 
-      flash.now[:notice] = "facebookでのログインに失敗しました。"
-      render :new
-    end
-  end
-
-  def normal_login
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
-    else
-      render :new
-    end
   end
 
   def edit
@@ -71,6 +50,27 @@ class UsersController < ApplicationController
     if @current_user.id != params[:id].to_i
       flash[:notice] = "権限がありません"
       redirect_to @user
+    end
+  end
+
+  def sns_login
+    @user = User.from_omniauth(request.env["omniauth.auth"])
+    if @user.save(context: :sns_login)
+      session[:user_id] = @user.id
+      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
+    else 
+      flash.now[:notice] = "#{@user.provider}でのログインに失敗しました。"
+      render :new
+    end
+  end
+
+  def normal_login
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
+    else
+      render :new
     end
   end
 end
