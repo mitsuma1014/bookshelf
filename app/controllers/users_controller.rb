@@ -16,27 +16,6 @@ class UsersController < ApplicationController
     normal_login   #通常ログイン
   end
 
-  def sns_login
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-    if @user.save(context: :sns_login)
-      session[:user_id] = @user.id
-      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
-    else 
-      flash.now[:notice] = "#{@user.provider}でのログインに失敗しました。"
-      render :new
-    end
-  end
-
-  def normal_login
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
-    else
-      render :new
-    end
-  end
-
   def edit
   end
 
@@ -71,6 +50,27 @@ class UsersController < ApplicationController
     if @current_user.id != params[:id].to_i
       flash[:notice] = "権限がありません"
       redirect_to @user
+    end
+  end
+
+  def sns_login
+    @user = User.from_omniauth(request.env["omniauth.auth"])
+    if @user.save(context: :sns_login)
+      session[:user_id] = @user.id
+      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
+    else 
+      flash.now[:notice] = "#{@user.provider}でのログインに失敗しました。"
+      render :new
+    end
+  end
+
+  def normal_login
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
+    else
+      render :new
     end
   end
 end
