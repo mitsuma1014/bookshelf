@@ -35,10 +35,13 @@
       <p>気になるユーザーの感想を一覧表示</p><br>
     </div>
   </div>
+  <% unless current_user %>
   <div class="start">
     <%= link_to "はじめる", :new_user,class:"btn btn-warning  btn-outline-secondary"%>
-    <%= link_to "Facebookでログイン", "/auth/facebook"%>
+    <%= link_to " facebookでログイン", "/auth/facebook",class:"fa fa-facebook btn btn-outline-primary " %>
+    <%= link_to "twitterでログイン","/auth/twitter",class:"fa fa-twitter btn btn-outline-primary" %>
   </div>
+  <% end %>
 
 </div>
 

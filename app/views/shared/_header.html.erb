@@ -1,11 +1,13 @@
-<nav class="nav justify-content-end navbar navbar-dark">
+<nav class="nav navbar navbar-dark">
+<div class="mr-auto">
+    <%= link_to_unless_current "Top", :root,class:"nav-link" %>
+</div>
   <% if current_user %>
     <%= link_to_unless_current "本棚", :books, class:"nav-link"%>
     <%= link_to_unless_current current_user.name, current_user,class:"nav-link" %>
     <%= link_to_unless_current "みんなの感想",:reviews,class:"nav-link" %>
     <%= link_to "ログアウト", logout_path, method: :delete,class:"nav-link"%>
   <% else %>
-    <%= link_to_unless_current "Top", :root,class:"nav-link" %>
     <%= link_to_unless_current "新規登録", :new_user,class:"nav-link" %>
     <%= link_to_unless_current "ログイン" ,login_path,class:"nav-link" %>
   <% end %>

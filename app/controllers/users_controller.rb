@@ -12,17 +12,17 @@ class UsersController < ApplicationController
   end
 
   def create
-    return facebook_login if request.env['omniauth.auth'].present? #facebookログイン
+    return sns_login if request.env['omniauth.auth'].present? #snsログイン
     normal_login   #通常ログイン
   end
 
-  def facebook_login
+  def sns_login
     @user = User.from_omniauth(request.env["omniauth.auth"])
-    if @user.save(context: :facebook_login)
+    if @user.save(context: :sns_login)
       session[:user_id] = @user.id
       redirect_to @user, notice: "ユーザー「#{@user.name}」がログインしました。" 
     else 
-      flash.now[:notice] = "facebookでのログインに失敗しました。"
+      flash.now[:notice] = "#{@user.provider}でのログインに失敗しました。"
       render :new
     end
   end

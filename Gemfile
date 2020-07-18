@@ -74,3 +74,7 @@ gem "bootstrap"
 gem "omniauth"
 
 gem "omniauth-facebook"
+
+gem "omniauth-twitter"
+
+gem "font-awesome-sass"

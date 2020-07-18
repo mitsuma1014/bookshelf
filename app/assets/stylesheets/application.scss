@@ -15,11 +15,15 @@
  */
 
  @import "bootstrap";
-
+ 
  @font-face{
    font-family: "RoundedMplus1c-Regular";
    src: asset_url("/assets/RoundedMplus1c-Regular.ttf") format("truetype");
  }
+
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+
  body{
   font-family: "RoundedMplus1c-Regular";
   background-image:url("/bookshelf.jpg");
@@ -58,6 +62,10 @@
 .post{
   margin:10px
   border
+}
+
+.fa{
+  line-height: 1.5 !important;
 }
 
 // ユーザー詳細画面
